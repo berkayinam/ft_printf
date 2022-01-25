@@ -28,10 +28,6 @@ $(NAME) : ${OBJS}
 .c.o : 
 	${CC} ${CFLAGS} -c $< -o $@ 
 
-# $< input files
-# $@ output files
-# in makefile used to create oputput files in their subfolder
-
 clean :
 	${RM} ${OBJS}
 
