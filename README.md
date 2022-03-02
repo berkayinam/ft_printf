@@ -1,2 +1,2 @@
 # ft_printf
-KJKSZPJ
+Think basic

@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_printpointer.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: binam <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/24 13:46:00 by binam             #+#    #+#             */
-/*   Updated: 2022/01/24 13:46:02 by binam            ###   ########.fr       */
+/*   Created: 2022/02/12 17:19:04 by binam             #+#    #+#             */
+/*   Updated: 2022/02/12 19:16:55 by binam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putnbr(int num, int *ret_val)
+int	ft_printpointer(unsigned long int n)
 {
-	if (num < 0)
-	{
-		ft_putchar('-', ret_val);
-		if (num == -2147483648)
-		{
-			ft_putchar('2', ret_val);
-			ft_putnbr(147483648, ret_val);
-			return ;
-		}
-		num = -num;
-	}
-	if (num > 9)
-		ft_putnbr(num / 10, ret_val);
-	ft_putchar(num % 10 + 48, ret_val);
+	int	print_number;
+
+	print_number = 0;
+	if (n >= 16)
+		print_number += ft_printpointer(n / 16);
+	print_number += ft_printchar("0123456789abcdef"[n % 16]);
+	return (print_number);
 }

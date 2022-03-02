@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putunbr.c                                       :+:      :+:    :+:   */
+/*   ft_printx.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: binam <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/24 13:46:37 by binam             #+#    #+#             */
-/*   Updated: 2022/01/24 13:46:37 by binam            ###   ########.fr       */
+/*   Created: 2022/02/12 19:17:13 by binam             #+#    #+#             */
+/*   Updated: 2022/02/12 19:17:14 by binam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putunbr(unsigned int num, int *ret_val)
+int	ft_printx(unsigned int n, char c)
 {
-	char	s[10];
-	int		i;
+	int	print_number;
 
-	i = 0;
-	if (num == 0)
-		ft_putchar('0', ret_val);
-	while (num)
+	print_number = 0;
+	if (n == 0)
 	{
-		s[i++] = num % 10 + '0';
-		num /= 10;
+		ft_printstr("0");
+		return (1);
 	}
-	while (i--)
-		ft_putchar(*(s + i), ret_val);
+	if (n >= 16)
+		print_number += ft_printx(n / 16, c);
+	if (c == 'x')
+		print_number += ft_printchar("0123456789abcdef"[n % 16]);
+	else
+		print_number += ft_printchar("0123456789ABCDEF"[n % 16]);
+	return (print_number);
 }

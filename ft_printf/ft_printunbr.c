@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putptr.c                                        :+:      :+:    :+:   */
+/*   ft_printunbr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: binam <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/24 13:46:20 by binam             #+#    #+#             */
-/*   Updated: 2022/01/24 13:46:21 by binam            ###   ########.fr       */
+/*   Created: 2022/02/12 19:17:05 by binam             #+#    #+#             */
+/*   Updated: 2022/02/12 19:17:07 by binam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putptr(unsigned long num, int *ret_val)
+int	ft_printunbr(unsigned int n)
 {
-	if (num == 0)
+	int	print_number;
+
+	print_number = 0;
+	if (n == 0)
 	{
-		ft_putstr("0x0", ret_val);
-		return ;
+		ft_printstr("0");
+		return (1);
 	}
-	ft_putstr("0x", ret_val);
-	ft_putstr(ft_convert(num, "0123456789abcdef"), ret_val);
+	if (n >= 10)
+		print_number += ft_printunbr(n / 10);
+	print_number += ft_printchar("0123456789"[n % 10]);
+	return (print_number);
 }
